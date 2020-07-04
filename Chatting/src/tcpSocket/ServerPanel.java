@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tcpSocket;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-/**
- *
- * @author student
- */
-public class ServerPanel extends javax.swing.JFrame implements FrameBehavior {
-	
-	private HashMap<String, Client> clients;
-	
+public class ServerPanel extends javax.swing.JFrame implements FrameBehavior
+{
+
+	public static ArrayList<Client> clients;
+
 	/**
 	 * Creates new form ServerPanel
 	 */
-	public ServerPanel() {
+	public ServerPanel()
+	{
 		initComponents();
 	}
 
@@ -102,26 +95,38 @@ public class ServerPanel extends javax.swing.JFrame implements FrameBehavior {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String args[]) {
+	public static void main(String args[])
+	{
 		/* Set the Nimbus look and feel */
 		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
+		try
+		{
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+			{
+				if ("Nimbus".equals(info.getName()))
+				{
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
-		} catch (ClassNotFoundException ex) {
+		}
+		catch (ClassNotFoundException ex)
+		{
 			java.util.logging.Logger.getLogger(ServerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
+		}
+		catch (InstantiationException ex)
+		{
 			java.util.logging.Logger.getLogger(ServerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
+		}
+		catch (IllegalAccessException ex)
+		{
 			java.util.logging.Logger.getLogger(ServerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		}
+		catch (javax.swing.UnsupportedLookAndFeelException ex)
+		{
 			java.util.logging.Logger.getLogger(ServerPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
@@ -134,50 +139,47 @@ public class ServerPanel extends javax.swing.JFrame implements FrameBehavior {
 		});
 	}
 
-	//Kodlayacağımız lojiğimiz burada olacak. 
 	@Override
-	public void makeAction(String msg, Client client) {
-
+	public void makeAction(String msg, Client client)
+	{
 		String mParsed[] = msg.split(" ");
-		
-		if (mParsed.length >= 2) {
-			if (mParsed[0].equals("Nickname")) {
+
+		if (mParsed.length >= 2)
+		{
+			if (mParsed[0].equals("Nickname"))
+			{
 				client.nickname = mParsed[1];
 				printResult(msg);
-			} else if ( (mParsed.length >= 3) && (mParsed[0].equals("Message")) ) {
-				
+			}
+			else if ((mParsed.length >= 3) && (mParsed[0].equals("Message")))
+			{
 				String[] parts = msg.split(" ", 2);
 				String[] parts2 = parts[1].split(" ", 2);
 				String sendTo = parts2[0];
 				String message = parts2[1];
-				
-				/*
-				clients.get(mParsed[1]).myOutputMessages.add(client.nickname + " " + message); // try to use this instead of for statement
-				*/
-				
-				switch (mParsed[1]) {
+
+				//clients.get(mParsed[1]).myOutputMessages.add(client.nickname + " " + message); // try to use this instead of for statement
+				switch (mParsed[1])
+				{
 					case "all":
-						for (Client clt : Info.clients) {
-								clt.myOutputMessages.add(client.nickname + " " + message);
-						}
+						for (Client clt : clients)
+							clt.myOutputMessages.add(client.nickname + " " + message);
 						break;
 					default:
-						for (Client clt : Info.clients) {
+						for (Client clt : clients)
 							if (mParsed[1].equals(clt.nickname))
-							{
 								clt.myOutputMessages.add(client.nickname + " " + message);
-							}
-						}
 						break;
 				}
-				printResult("\"" + sendTo + "\", from \"" + client.nickname + "\": " + message);
+				printResult("To \"" + sendTo + "\", from \"" + client.nickname + "\": " + message);
 			}
 		}
-		
+
 		repaint();
 	}
 
-	public void printResult(String msg) {
+	public void printResult(String msg)
+	{
 		txtMesajlar.setText(txtMesajlar.getText() + "\n" + msg);
 	}
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tcpSocket;
 
 import java.io.IOException;
@@ -10,11 +5,8 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author student
- */
-public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
+public class ClientPanel extends javax.swing.JFrame implements FrameBehavior
+{
 
 	public String myNickname;
 	private static InetAddress host;
@@ -25,7 +17,8 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
 	/**
 	 * Creates new form ClientPanel
 	 */
-	public ClientPanel() {
+	public ClientPanel()
+	{
 		initComponents();
 	}
 
@@ -44,12 +37,12 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
       btnJoin = new javax.swing.JButton();
       jScrollPane1 = new javax.swing.JScrollPane();
       txtMessages = new javax.swing.JTextArea();
-      txtTakmaAd = new javax.swing.JTextField();
+      txtNickname = new javax.swing.JTextField();
       jLabel3 = new javax.swing.JLabel();
       txtPort = new javax.swing.JTextField();
       jLabel2 = new javax.swing.JLabel();
       jLabel5 = new javax.swing.JLabel();
-      txtTahmin = new javax.swing.JTextField();
+      txtMessage = new javax.swing.JTextField();
       btnSend = new javax.swing.JButton();
       txtSendTo = new javax.swing.JTextField();
       jLabel4 = new javax.swing.JLabel();
@@ -74,12 +67,12 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
       txtMessages.setText("\n-> Send to \"all\" to send to all users.");
       jScrollPane1.setViewportView(txtMessages);
 
-      txtTakmaAd.setName(""); // NOI18N
-      txtTakmaAd.addActionListener(new java.awt.event.ActionListener()
+      txtNickname.setName(""); // NOI18N
+      txtNickname.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            txtTakmaAdActionPerformed(evt);
+            txtNicknameActionPerformed(evt);
          }
       });
 
@@ -96,13 +89,13 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
 
       jLabel2.setText("Port");
 
-      jLabel5.setText("File");
+      jLabel5.setText("Message");
 
-      txtTahmin.addActionListener(new java.awt.event.ActionListener()
+      txtMessage.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            txtTahminActionPerformed(evt);
+            txtMessageActionPerformed(evt);
          }
       });
 
@@ -138,15 +131,13 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
                      .addComponent(jLabel1)
                      .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(layout.createSequentialGroup()
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtSendTo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTahmin, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSend))
+                        .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                      .addGroup(layout.createSequentialGroup()
                         .addComponent(txtServerIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -156,12 +147,14 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTakmaAd, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnJoin)))
+                        .addComponent(txtNickname)))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(btnJoin)
                   .addContainerGap())
                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(17, 17, 17))))
       );
       layout.setVerticalGroup(
@@ -174,14 +167,14 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
                .addComponent(jLabel2)
                .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtTakmaAd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(btnJoin))
             .addGap(12, 12, 12)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel4)
                .addComponent(txtSendTo)
                .addComponent(jLabel5)
-               .addComponent(txtTahmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(btnSend))
             .addGap(18, 18, 18)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
@@ -192,21 +185,20 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
    }// </editor-fold>//GEN-END:initComponents
 
     private void btnJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinActionPerformed
-		 try {
-			 if ("all".equals(txtTakmaAd.getText()) || "".equals(txtTakmaAd.getText()))
-			 {
+		 try
+		 {
+			 if ("all".equals(txtNickname.getText()) || "".equals(txtNickname.getText()))
 				 throw new Exception();
-			 }
-			 
-			 String[] nicknames = txtTakmaAd.getText().split(" ");
+
+			 String[] nicknames = txtNickname.getText().split(" ");
 			 myNickname = nicknames[0];
-			 txtTakmaAd.setText(nicknames[0]);
+			 txtNickname.setText(nicknames[0]);
 			 //printResult2("-> Spaces in nicknames are not allowed. Your nickname has "
 			 //	 + "been cropped to \"" + myNickname + "\"");
-			 
+
 			 host = InetAddress.getByName(txtServerIp.getText());
 			 Socket socket = new Socket(host, Integer.parseInt(txtPort.getText())); // socket(connection)
-			 
+
 			 client = new Client(socket, this);
 			 client.myOutputMessages.add("Nickname " + myNickname);
 			 printResult2("-> Connected");
@@ -216,55 +208,67 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
 		 } catch (IOException ex) {
 			 Logger.getLogger(ClientPanel.class.getName()).log(Level.SEVERE, null, ex);
 		 } catch (Exception ex) {
-			Logger.getLogger(ClientPanel.class.getName()).log(Level.SEVERE, "Invalid nickname", ex);
-		}
+			 Logger.getLogger(ClientPanel.class.getName()).log(Level.SEVERE, "Invalid nickname", ex);
+		 }
     }//GEN-LAST:event_btnJoinActionPerformed
 
-    private void txtTakmaAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTakmaAdActionPerformed
+    private void txtNicknameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNicknameActionPerformed
 
-    }//GEN-LAST:event_txtTakmaAdActionPerformed
+    }//GEN-LAST:event_txtNicknameActionPerformed
 
-    private void txtTahminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTahminActionPerformed
+    private void txtMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMessageActionPerformed
 		 btnSendActionPerformed(evt);
-    }//GEN-LAST:event_txtTahminActionPerformed
+    }//GEN-LAST:event_txtMessageActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-		 client.myOutputMessages.add("Message " + txtSendTo.getText() + " " + txtTahmin.getText());
-		 printResult2("To " + txtSendTo.getText() + ": " + txtTahmin.getText());
-		 txtTahmin.setText("");
+		 client.myOutputMessages.add("Message " + txtSendTo.getText() + " " + txtMessage.getText());
+		 printResult2("To " + txtSendTo.getText() + ": " + txtMessage.getText());
+		 txtMessage.setText("");
     }//GEN-LAST:event_btnSendActionPerformed
 
    private void txtSendToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSendToActionPerformed
-      // TODO add your handling code here:
+		// TODO add your handling code here:
    }//GEN-LAST:event_txtSendToActionPerformed
 
    private void txtPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPortActionPerformed
-      // TODO add your handling code here:
+		// TODO add your handling code here:
    }//GEN-LAST:event_txtPortActionPerformed
 
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String args[]) {
+	public static void main(String args[])
+	{
 		/* Set the Nimbus look and feel */
 		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
+		try
+		{
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+			{
+				if ("Nimbus".equals(info.getName()))
+				{
 					javax.swing.UIManager.setLookAndFeel(info.getClassName());
 					break;
 				}
 			}
-		} catch (ClassNotFoundException ex) {
+		}
+		catch (ClassNotFoundException ex)
+		{
 			java.util.logging.Logger.getLogger(ClientPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
+		}
+		catch (InstantiationException ex)
+		{
 			java.util.logging.Logger.getLogger(ClientPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
+		}
+		catch (IllegalAccessException ex)
+		{
 			java.util.logging.Logger.getLogger(ClientPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+		}
+		catch (javax.swing.UnsupportedLookAndFeelException ex)
+		{
 			java.util.logging.Logger.getLogger(ClientPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
@@ -278,22 +282,25 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
 	}
 
 	@Override
-	public void makeAction(String msg, Client sender) {
+	public void makeAction(String msg, Client sender)
+	{
 		printResult(msg);
 		repaint();
 	}
-	
-	public void printResult(String msg) {
+
+	public void printResult(String msg)
+	{
 		String[] parts = msg.split(" ", 2);
 		String clientName = parts[0];
 		String message = parts[1];
 		txtMessages.setText(txtMessages.getText() + "\n" + "From " + clientName + ": " + message);
 	}
-	
-	public void printResult2(String msg) {
+
+	public void printResult2(String msg)
+	{
 		txtMessages.setText(txtMessages.getText() + "\n" + msg);
 	}
-	
+
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton btnJoin;
    private javax.swing.JButton btnSend;
@@ -303,11 +310,11 @@ public class ClientPanel extends javax.swing.JFrame implements FrameBehavior {
    private javax.swing.JLabel jLabel4;
    private javax.swing.JLabel jLabel5;
    private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JTextField txtMessage;
    private javax.swing.JTextArea txtMessages;
+   private javax.swing.JTextField txtNickname;
    private javax.swing.JTextField txtPort;
    private javax.swing.JTextField txtSendTo;
    private javax.swing.JTextField txtServerIp;
-   private javax.swing.JTextField txtTahmin;
-   private javax.swing.JTextField txtTakmaAd;
    // End of variables declaration//GEN-END:variables
 }
